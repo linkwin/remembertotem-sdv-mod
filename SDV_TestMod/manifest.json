@@ -1,0 +1,10 @@
+{
+  "Name": "SDV_TestMod",
+  "Author": "Alan",
+  "Version": "1.0.0",
+  "Description": "Provides feedback to player when health is getting low",
+  "UniqueID": "Alan.SDV_TestMod",
+  "EntryDll": "SDV_TestMod.dll",
+  "MinimumApiVersion": "2.10.0",
+  "UpdateKeys": []
+}
