@@ -76,6 +76,14 @@ namespace SDV_TestMod
          */
         private void World_ObjectListChanged(object sender, ObjectListChangedEventArgs e)
         {
+            foreach (KeyValuePair<Vector2, StardewValley.Object> pair in e.Removed)
+            {
+                if (pair.Value.name == "Remember Totem")
+                {
+                    this.Monitor.Log("REMOVED");
+                }
+            }
+
             foreach (KeyValuePair<Vector2, StardewValley.Object> pair in e.Added)
             {
                 if (pair.Value.name == "Remember Totem")
@@ -91,10 +99,13 @@ namespace SDV_TestMod
                     else {
                         //TODO: possibly pop up prompt to warn player about their previous totem being removed.
                         //remove previously placed remember totem
-                        string loc = placedTotemWarp.TargetName;
-                        int xx = placedTotemWarp.TargetX;
-                        int yy = placedTotemWarp.TargetY;
-                        Game1.getLocationFromName(loc).removeEverythingFromThisTile(xx, yy);
+                        if (placedTotemWarp != null)
+                        {
+                            string loc = placedTotemWarp.TargetName;
+                            int xx = placedTotemWarp.TargetX;
+                            int yy = placedTotemWarp.TargetY;
+                            Game1.getLocationFromName(loc).removeEverythingFromThisTile(xx, yy);
+                        }
                                        
                         //assign newly placed totem to field
                         placedTotemWarp = new Warp(x, y, Game1.player.currentLocation.Name, x, y, false);
